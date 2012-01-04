@@ -16,7 +16,7 @@ jd-linux is derived from the JDownloader Ubuntu package:
     https://launchpad.net/~jd-team/+archive/jdownloader
 
 jd-container.png and jdownloader.xml files are both provided by:
-    fcpt <klinxer at gmail dot com>
+    fcpt - klinxer at gmail dot com
 
 Dependencies
 ------------
@@ -35,7 +35,7 @@ Installation
 Author
 ------
 
-Alessio Sergi (@al3hex) <al3hex at gmail dot com>
+Alessio Sergi (@al3hex) - al3hex at gmail dot com
 
 License
 -------
