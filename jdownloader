@@ -45,7 +45,7 @@ cd "${JD_DIRECTORY}"
 
 # download updater, if it is missing (e.g. first run)
 if test ! -f jdupdate.jar; then
-	echo "$0: No installer/updater found in ${JDOWNLOADER_DIRECTORY}." >> ${LOG_FILE}
+	echo "$0: No installer/updater found in ${JD_DIRECTORY}." >> ${LOG_FILE}
 	download_updater
 fi
 
