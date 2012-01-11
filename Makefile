@@ -1,13 +1,12 @@
 NAME := jd-linux
-VERSION := 0.1
+VERSION := 0.2
 
 PREFIX ?= /usr
 
 JDBINDIR = $(DESTDIR)$(PREFIX)/bin
-JDOPTDIR = $(DESTDIR)/opt
 
 dist_files := jdownloader jdownloader.desktop jdownloader.png \
-			  jdownloader.xml jd-container.png Makefile
+	      jdownloader.xml jd-container.png Makefile
 
 all:
 	for size in 16 22 24 32 48 128 256 ; do \
@@ -15,10 +14,10 @@ all:
 		if [ $$size -eq 24 ] ; then \
 			convert hicolor/22x22/apps/jdownloader.png \
 				-bordercolor Transparent -border 1x1 \
-					hicolor/$${size}x$${size}/apps/jdownloader.png ; \
+				hicolor/$${size}x$${size}/apps/jdownloader.png ; \
 			convert hicolor/22x22/mimetypes/jd-container.png \
 				-bordercolor Transparent -border 1x1 \
-					hicolor/$${size}x$${size}/mimetypes/jd-container.png ; \
+				hicolor/$${size}x$${size}/mimetypes/jd-container.png ; \
 		else \
 			convert jdownloader.png -resize $${size}x$${size} \
 				hicolor/$${size}x$${size}/apps/jdownloader.png ; \
@@ -36,7 +35,6 @@ install:
 	done
 	install -D -m 644 jdownloader.xml \
 		$(DESTDIR)$(PREFIX)/share/mime/packages/jdownloader.xml
-	install -d -m 777 $(JDOPTDIR)/jdownloader
 
 clean:
 	rm -rf hicolor
@@ -48,7 +46,6 @@ uninstall:
 		rm -f $(DESTDIR)$(PREFIX)/share/icons/$$icon ; \
 	done
 	rm -f $(DESTDIR)$(PREFIX)/share/mime/packages/jdownloader.xml
-	rm -rf $(JDOPTDIR)/jdownloader
 
 dist:
 	tar -c --transform="s@^@$(NAME)_$(VERSION)/@" $(dist_files) | \

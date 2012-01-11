@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-JD_DIRECTORY=/opt/jdownloader
+JD_DIRECTORY=~/.jdownloader
 LOG_FILE=${JD_DIRECTORY}/jdownloader.log
 JAVA_OPTIONS="-Xmx512m"
 NUMBER_OF_UPDATE_MIRRORS=3
@@ -33,6 +33,10 @@ while getopts 'u' OPTION 2> /dev/null; do
 	esac
 done
 
+# create JDownloader directory, if it is missing (e.g. first run)
+if test ! -d "${JD_DIRECTORY}"; then
+	mkdir -p "${JD_DIRECTORY}"
+fi
 
 cd "${JD_DIRECTORY}"
 
