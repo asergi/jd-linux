@@ -13,21 +13,21 @@ download_updater() {
 
   rm -f jdupdate.jar
   echo "$0: Download jdupdate.jar from $MIRROR." >> $LOG_FILE
-  curl -vLO $MIRROR/jdupdate.jar >> $LOG_FILE 2>&1 || zenity --error --text \
+  curl -vLO $MIRROR/jdupdate.jar >> $LOG_FILE 2>&1 || notify-send "Error" \
     "The JDownloader updater could not be downloaded. \
     \nCheck your Internet connection and try again. \
     \nThe error log can be found in $LOG_FILE."
 
   rm -f jdupdate.jar.md5
   echo "$0: Download jdupdate.jar.md5 from $MIRROR." >> $LOG_FILE
-  curl -vLO $MIRROR/jdupdate.jar.md5 >> $LOG_FILE 2>&1 || zenity --error --text \
+  curl -vLO $MIRROR/jdupdate.jar.md5 >> $LOG_FILE 2>&1 || notify-send "Error" \
     "The JDownloader updater MD5 sum file could not be downloaded. \
     \nCheck your Internet connection and try again. \
     \nThe error log can be found in $LOG_FILE."
 
   ACTUAL_MD5SUM=$(md5sum jdupdate.jar | cut -f1 -d" ")
   TARGET_MD5SUM=$(cat jdupdate.jar.md5)
-  [[ "$ACTUAL_MD5SUM" = "$TARGET_MD5SUM" ]] || zenity --warning --text \
+  [[ "$ACTUAL_MD5SUM" = "$TARGET_MD5SUM" ]] || notify-send "Warning" \
     "The MD5 sum of the JDownloader updater mismatches. \
     \nEither there was a download error or one of the files \
     (downloader or md5 sum file) is not up-to-date. \
