@@ -34,10 +34,23 @@ download_updater() {
     \nThe log file can be found in $LOG_FILE."
 }
 
-# determine command line parameters
-while getopts ':u' opt; do
+usage() {
+  cat <<EOF
+Usage: ${0##*/} [option]
+
+Options:
+  -h    Show this help message and exit
+  -u    Manually check for updates
+EOF
+}
+
+# determine command-line parameters
+while getopts ':hu' opt; do
   case $opt in
-    u) update=1;;
+    h) usage; exit 0 ;;
+    u) update=1 ;;
+    *) echo "$0: Invalid option '-$OPTARG'" >&2
+       usage; exit 1 ;;
   esac
 done
 
