@@ -39,16 +39,20 @@ usage() {
 Usage: ${0##*/} [option]
 
 Options:
-  -h    Show this help message and exit
-  -u    Manually check for updates
+  -h                Show this help message and exit
+  -r <directory>    The JDownloader directory to use
+  -u                Manually check for updates
 EOF
 }
 
 # determine command-line parameters
-while getopts ':hu' opt; do
+while getopts ':hr:u' opt; do
   case $opt in
     h) usage; exit 0 ;;
+    r) JD_DIRECTORY=$OPTARG ;;
     u) update=1 ;;
+    :) echo "$0: Option '-$OPTARG' requires an argument" >&2
+       exit 1 ;;
     *) echo "$0: Invalid option '-$OPTARG'" >&2
        usage; exit 1 ;;
   esac
