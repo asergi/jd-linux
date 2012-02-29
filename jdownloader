@@ -23,27 +23,40 @@ LOG_FILE=$JD_DIRECTORY/jdownloader.log
 JAVA_OPTIONS="-Xmx512m"
 NUMBER_OF_UPDATE_MIRRORS=3
 
+notify() {
+  local title="$1"
+  local message="$2"
+
+  if [ $(which notify-send 2>/dev/null) ]; then
+    notify-send "$title" "$message"
+  elif [ $(which kdialog 2>/dev/null) ]; then
+    kdialog --title "$title" --passivepopup "$message"
+  else
+    echo -e "$0: [$title] $message" >&2
+  fi
+}
+
 download_updater() {
   RANDOM_NUMBER=$(dd if=/dev/urandom count=1 2>/dev/null | cksum | cut -f1 -d" ")
   MIRROR=http://update$(expr $RANDOM_NUMBER % $NUMBER_OF_UPDATE_MIRRORS).jdownloader.org/
 
   rm -f jdupdate.jar
   echo "$0: Download jdupdate.jar from $MIRROR." >> $LOG_FILE
-  curl -vLO $MIRROR/jdupdate.jar >> $LOG_FILE 2>&1 || notify-send "Error" \
+  curl -vLO $MIRROR/jdupdate.jar >> $LOG_FILE 2>&1 || notify "Error" \
     "The JDownloader updater could not be downloaded. \
     \nCheck your Internet connection and try again. \
     \nThe error log can be found in $LOG_FILE."
 
   rm -f jdupdate.jar.md5
   echo "$0: Download jdupdate.jar.md5 from $MIRROR." >> $LOG_FILE
-  curl -vLO $MIRROR/jdupdate.jar.md5 >> $LOG_FILE 2>&1 || notify-send "Error" \
+  curl -vLO $MIRROR/jdupdate.jar.md5 >> $LOG_FILE 2>&1 || notify "Error" \
     "The JDownloader updater MD5 sum file could not be downloaded. \
     \nCheck your Internet connection and try again. \
     \nThe error log can be found in $LOG_FILE."
 
   ACTUAL_MD5SUM=$(md5sum jdupdate.jar | cut -f1 -d" ")
   TARGET_MD5SUM=$(cat jdupdate.jar.md5)
-  [[ "$ACTUAL_MD5SUM" = "$TARGET_MD5SUM" ]] || notify-send "Warning" \
+  [[ "$ACTUAL_MD5SUM" = "$TARGET_MD5SUM" ]] || notify "Warning" \
     "The MD5 sum of the JDownloader updater mismatches. \
     \nEither there was a download error or one of the files \
     (downloader or md5 sum file) is not up-to-date. \
