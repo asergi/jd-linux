@@ -1,5 +1,5 @@
 NAME := jd-linux
-VERSION := 0.2
+VERSION := 0.3
 
 PREFIX ?= /usr
 
