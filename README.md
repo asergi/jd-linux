@@ -11,7 +11,8 @@ mime-type support for encrypted link-containers, like CCF, RSDF and DLC files
 and a script, which will download and launch the latest stable JDownloader.
 The downloaded files will be stored in ~/.jdownloader by default.
 
-jd-linux is derived from the JDownloader Ubuntu package: https://launchpad.net/~jd-team/+archive/jdownloader
+jd-linux is derived from the JDownloader Ubuntu package:
+https://launchpad.net/~jd-team/+archive/jdownloader
 
 Dependencies
 ------------
