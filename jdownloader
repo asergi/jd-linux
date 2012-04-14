@@ -18,7 +18,7 @@
 
 set -e
 
-JD_DIRECTORY=~/.jdownloader
+JD_DIRECTORY="$HOME"/.jdownloader
 LOG_FILE="$JD_DIRECTORY"/jdownloader.log
 JAVA_OPTIONS="-Xmx512m"
 NUMBER_OF_UPDATE_MIRRORS=3
