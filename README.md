@@ -3,12 +3,12 @@ jd-linux
 
 **jd-linux** is a bundle that provides everything you need to:
 
-* install/uninstall JDownloader on Linux easily;
-* make it fit seamlessly into all the major DEs (GNOME, KDE, Xfce, LXDE).
+* install/uninstall JDownloader on Linux easily
+* make it fit seamlessly into all the major DEs (GNOME, KDE, Xfce, LXDE)
 
 The package contains: a Makefile, a dektop file, icons, a XML file that adds
-mime-type support for encrypted link-containers, like CCF, RSDF and DLC files
-and a script, which will download and launch the latest stable JDownloader.
+mime-type support for encrypted link-containers like CCF, RSDF and DLC files,
+and a script which will download and launch the latest stable JDownloader.
 The downloaded files will be stored in ~/.jdownloader by default.
 
 jd-linux is derived from the JDownloader Ubuntu package:
