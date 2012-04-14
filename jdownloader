@@ -38,7 +38,8 @@ notify() {
 
 download_updater() {
   RANDOM_NUMBER=$(dd if=/dev/urandom count=1 2>/dev/null | cksum | cut -f1 -d" ")
-  MIRROR=http://update$(expr $RANDOM_NUMBER % $NUMBER_OF_UPDATE_MIRRORS).jdownloader.org/
+  MIRROR_NUMBER=$(expr "$RANDOM_NUMBER" % "$NUMBER_OF_UPDATE_MIRRORS" || true)
+  MIRROR="http://update${MIRROR_NUMBER}.jdownloader.org/"
 
   rm -f jdupdate.jar
   echo "$0: Download jdupdate.jar from $MIRROR." >> "$LOG_FILE"
